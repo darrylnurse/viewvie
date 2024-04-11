@@ -4,7 +4,7 @@
 
 //using commonJs
 const ffmpeg = require('fluent-ffmpeg');
-const input = `${process.cwd()}/input/test.mp4`;
+const input = `${process.cwd()}/input/blueink.mp4`;
 const inputPrefix = getPrefix(input);
 
 function getPrefix(filePath = "/name.type"){
@@ -44,7 +44,7 @@ function execSplit(resolution = '0x0', duration = 0.0){
             '-vf', `fps=1/${FRAMERATE}` //this is the deprecated version, but it outputs 2 more frames?
             // '-frames:v', `${Math.floor(videoDuration * FPS)}` //deprecated version is more precise, so we will be using it
         ])
-        .output(`${process.cwd()}/output2/${inputPrefix}-frame-%d.jpg`) //hyphens are word separators, underscores are word joiners
+        .output(`${process.cwd()}/output/${inputPrefix}-frame-%d.jpg`) //hyphens are word separators, underscores are word joiners
         .size(resolution) //width x height
         .on('error', err => console.log("Didn't work: ", err.message))
         .on('end', () => console.log("Worked! Done!"))
