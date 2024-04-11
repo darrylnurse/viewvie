@@ -13,7 +13,6 @@ function getPrefix(filePath = "/name.type"){
   return filePath.slice(leftCut + 1, rightCut);
 }
 
-
 let videoResolution = '';
 let videoDuration = 0;
 function getVideoMetadata(input){
@@ -38,22 +37,36 @@ async function processVideo(input){
 const FRAMERATE = 0.033; //in milliseconds
 // const FPS = 30; //frames per second
 
-function execSplit(resolution = '0x0', duration = 0.0){
+function execSplit(resolution = '0x0'){
     ffmpeg(input) //new ffmpeg instance from input file
-        .outputOptions([
-            '-vf', `fps=1/${FRAMERATE}` //this is the deprecated version, but it outputs 2 more frames?
+        .outputOptions([ //-s denotes the resolution: 'widthxheight'
+            '-vf', `fps=1/${FRAMERATE}`, `-s ${resolution}` //this is the deprecated version, but it outputs 2 more frames?
             // '-frames:v', `${Math.floor(videoDuration * FPS)}` //deprecated version is more precise, so we will be using it
         ])
         .output(`${process.cwd()}/output/${inputPrefix}-frame-%d.jpg`) //hyphens are word separators, underscores are word joiners
-        .size(resolution) //width x height
         .on('error', err => console.log("Didn't work: ", err.message))
         .on('end', () => console.log("Worked! Done!"))
         .run(); //starts processing
 }
 
+//scale down function
+//get resolution of original video and apply scale down function
+function scaleDown(resolution = '0x0', scale = 1){ //resolution is width x height
+  let times = resolution.toLowerCase().indexOf('x');
+  let width = resolution.slice(0, times);
+  let height = resolution.slice(times + 1);
+  return `${Math.floor(width/scale)}x${Math.floor(height/scale)}`;
+}
+
 processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
-  execSplit(videoResolution);
+  const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
+  execSplit(newResolution);
 })
+
+// running this program multiple times without clearing output files will overwrite the image (given the file name is the same)
+
+// run in PowerShell from 'backend' dir to clear output images from 'output' dir:
+// Remove-Item -Path '.\output\*' -Recurse
 
 
 
