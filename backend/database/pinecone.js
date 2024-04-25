@@ -4,6 +4,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const API_KEY = process.env.PINECONE_API_KEY;
 
+import emitter from "./emitter.js";
+
 const pinecone = new Pinecone({
   apiKey: API_KEY
 });
@@ -36,8 +38,21 @@ const index = pinecone.index("viewvie");
 // ]);
 
 //Adds entries to namespace
-await index.namespace("test").upsert(createVectorObjects(520, 10, "movieTitle", "Howl's Moving Castle"))
-    .then(() => console.log("Success!"));
+// await index.namespace("test").upsert(createVectorObjects(520, 10, "movieTitle", "Howl's Moving Castle"))
+//     .then(() => console.log("Success!"));
+
+// we need function to turn single embedding into format that can be upserted
+// creates one embedding and turns it into vector object
+
+// emitter.on('newEmbedding', async embedding => { // this is the function triggered each time by emitter signal
+//   await index.namespace("test")
+//       .upsert(embedding)
+//       .then(() => console.log("Success!"));
+// })
+
+emitter.on('newEmbedding', embedding => {
+  console.log('Woo!');
+})
 
 // Gets all stats of index
 // const stats = await index.describeIndexStats();
