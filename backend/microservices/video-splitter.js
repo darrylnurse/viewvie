@@ -28,7 +28,6 @@ async function processVideo(input){
   try {
     const metadata = await getVideoMetadata(input);
     videoResolution = `${metadata.streams[0].width}x${metadata.streams[0].height}`; //we can compress here
-    videoDuration = metadata.format.duration;
   } catch (error){
     console.error("Process failed:", error); //go error handling !
   }
@@ -50,7 +49,7 @@ function execSplit(resolution = '0x0'){
       ])
       .output(`${process.cwd()}/output/${inputPrefix}-frame-%d.jpg`) //hyphens are word separators, underscores are word joiners
       .on('error', err => console.log("Didn't work: ", err.message))
-      .on('end', () => console.log("Worked! Done!"))
+      .on('end', () => console.log("Video split successfully!"))
       .run(); //starts processing
 }
 
@@ -63,10 +62,17 @@ function scaleDown(resolution = '0x0', scale = 1){ //resolution is width x heigh
   return `${Math.floor(width/scale)}x${Math.floor(height/scale)}`;
 }
 
-processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
-  const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
-  execSplit(newResolution);
-})
+function splitVideo(input = '/video/path.mp4') {
+  processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
+    const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
+    execSplit(newResolution);
+  });
+}
+
+// splitVideo(input);
+
+module.exports = splitVideo;
+
 
 // running this program multiple times without clearing output files will overwrite the image (given the file name is the same)
 
