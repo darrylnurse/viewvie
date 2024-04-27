@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.12",
     "@pinecone-database/pinecone": "^2.2.0",
     "agent-base": "^7.1.1",
     "ajv": "^8.12.0",
