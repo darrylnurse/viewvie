@@ -1,0 +1,7 @@
+- npm i
+- cd backend/server
+- node video-server
+- (open another terminal)
+- cd ../..
+- cd frontend
+- npm run dev
