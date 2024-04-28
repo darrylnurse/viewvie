@@ -1,0 +1,15 @@
+{
+  "name": "viewvie",
+  "version": "1.0.0",
+  "description": "shazam but movie",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-all": "concurrently \"nodemon backend/server/video-server.js\"  \"cd frontend && npm run dev\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

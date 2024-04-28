@@ -21,7 +21,6 @@
 - so that overall system flow can be used for admin and user
 - admin -> upload video -> beep bop *gear sounds* -> uploaded to backend WITH metadata
 - user -> upload video -> beep bop *softer gear sounds* -> This movie is Fight Club! (metadata is not necessary)
-<<<<<<< HEAD
 
 - trying to work on the edge case of videos with black borders
 - it is quite complex
@@ -48,3 +47,11 @@
 - (die)
 - setup a dir watcher for uploading
 - IT WORKED RAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 🦅🦅🦅🦅🦅
+
+- got a bunch of git errors because i globally replaces the word output with upload??
+- silly git
+
+- tasks fo today
+- test py-child.js command like input
+- package json script to run everything ✅
+- routes for frontend (admin & user)

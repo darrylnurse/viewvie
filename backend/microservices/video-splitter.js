@@ -4,17 +4,10 @@
 
 //using commonJs
 const ffmpeg = require('fluent-ffmpeg');
-const input = `${process.cwd()}/input/barremove.png`;
-const inputPrefix = getPrefix(input);
-
-function getPrefix(filePath = "/name.type"){
-  const leftCut = filePath.lastIndexOf('/');
-  const rightCut = filePath.indexOf('.');
-  return filePath.slice(leftCut + 1, rightCut);
-}
+const {join} = require("path");
 
 let videoResolution = '';
-let videoDuration = 0;
+
 function getVideoMetadata(input){
   return new Promise((resolve, reject) => {
     ffmpeg.ffprobe(input, (error, metadata) => { //this method is asynchronous; promise wrapping ensures its accessible
@@ -34,20 +27,25 @@ async function processVideo(input){
 }
 
 const FRAMERATE = 0.033; //in milliseconds
-// const FPS = 30; //frames per second
+const FPS = 30; //frames per second
 
-function execSplit(resolution = '0x0'){
+function getPrefix(filePath = "/name.type"){
+  while(filePath.startsWith('.')) filePath = filePath.slice(1);
+  const leftCut = filePath.lastIndexOf('/');
+  const rightCut = filePath.indexOf('.');
+  return filePath.slice(leftCut + 1, rightCut);
+}
+
+function execSplit(input, resolution = '0x0'){
+  const inputPrefix = getPrefix(input);
+  const outputPath = join(__dirname, '..', 'output', `${inputPrefix}-frame-%d.jpg`);
 
   ffmpeg(input) //new ffmpeg instance from input file
       .outputOptions([
           '-vf', //allows you to chain video filters
-          // `fps=fps=1/${FRAMERATE},scale=${resolution},cropdetect=24:16:0`
-          `fps=1/${FRAMERATE}`, //this is the deprecated version, but it outputs 2 more frames?
-          `-s ${resolution}`, //-s denotes the resolution: 'widthxheight'
-          // '-frames:v', `${Math.floor(videoDuration * FPS)}`
-          // deprecated version is more precise, so we will be using it
+          `fps=1/${FRAMERATE},scale=${resolution}`, //scale denotes the resolution: 'widthxheight'
       ])
-      .output(`${process.cwd()}/output/${inputPrefix}-frame-%d.jpg`) //hyphens are word separators, underscores are word joiners
+      .output(outputPath) //hyphens are word separators, underscores are word joiners
       .on('error', err => console.log("Didn't work: ", err.message))
       .on('end', () => console.log("Video split successfully!"))
       .run(); //starts processing
@@ -65,31 +63,19 @@ function scaleDown(resolution = '0x0', scale = 1){ //resolution is width x heigh
 function splitVideo(input = '/video/path.mp4') {
   processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
     const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
-<<<<<<< HEAD
-    // execSplit(newResolution);
-    execSplit('512x512');
-=======
-    execSplit(newResolution);
->>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
+    execSplit(input, newResolution);
   });
 }
 
-// splitVideo(input);
+// splitVideo("./output/barremove-frame-1.jpg");
+// works when i am in microservices directory ?? but not in backend
+// fixed methinks
 
 module.exports = splitVideo;
 
-
-<<<<<<< HEAD
-// running this program multiple times without clearing uploads files will overwrite the image (given the file name is the same)
-
-// run in PowerShell from 'backend' dir to clear uploads images from 'uploads' dir:
-// Remove-Item -Path '.\uploads\*' -Recurse
-=======
 // running this program multiple times without clearing output files will overwrite the image (given the file name is the same)
-
 // run in PowerShell from 'backend' dir to clear output images from 'output' dir:
 // Remove-Item -Path '.\output\*' -Recurse
->>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 
 
 
