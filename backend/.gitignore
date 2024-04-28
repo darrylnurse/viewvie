@@ -2,3 +2,4 @@ learning/video-splitter-old.js
 output
 ../.env
 .env
+node_modules/
