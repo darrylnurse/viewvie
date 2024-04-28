@@ -1,0 +1,44 @@
+- hey guys
+- please read
+- if you want
+- (i want you to)
+- in package.json directly in backend directory, type is set to COMMONJS (require statements)
+- this is for microservices files
+- in database directory, it is set to MODULE (import statements)
+- just something to bear in mind
+- embedder file should actually probably be in database because of this.
+- files between modules and database dont actually interact
+- i should totes fix this eventually where microservices has its own package.json
+- eventually..
+- lol i did it
+
+- 😝
+- output file is in gitignore because it can get very large and is often deleted and recreated
+- instructions to clear output are in video splitter file
+
+- eventually endpoint of backend to return to front end will be a single string =)
+- a few functions will have an optional parameter of metadata (probably an object : {"movieName" : "Fight Club"})
+- so that overall system flow can be used for admin and user
+- admin -> upload video -> beep bop *gear sounds* -> uploaded to backend WITH metadata
+- user -> upload video -> beep bop *softer gear sounds* -> This movie is Fight Club! (metadata is not necessary)
+
+- trying to work on the edge case of videos with black borders
+- it is quite complex
+- i would need to run ffplay in bash (it has no node support like ffmpeg)
+- and get those values to put into my ffmpeg call
+- maybe use child_process to run it and harvest the crop info using cropdetect
+- maybe look into it in the future
+
+- backend
+- run express server to handle images
+- serves images to chokidar which watches the server directory
+- server receives images from video-splitter
+- for now i will implement server for videos
+- frontend -> post method -> server -> processing -> etc.
+
+- frontend
+- throws error if upload is not a video
+- we can include image types later
+- display error on front end
+- lets do a route that contains the upload component and an error component
+- after causing exception there is an ok button that returns you to upload page
