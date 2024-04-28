@@ -10,7 +10,10 @@
 - files between modules and database dont actually interact
 - i should totes fix this eventually where microservices has its own package.json
 - eventually..
+<<<<<<< HEAD
 - lol i did it
+=======
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 
 - 😝
 - output file is in gitignore because it can get very large and is often deleted and recreated
@@ -21,6 +24,7 @@
 - so that overall system flow can be used for admin and user
 - admin -> upload video -> beep bop *gear sounds* -> uploaded to backend WITH metadata
 - user -> upload video -> beep bop *softer gear sounds* -> This movie is Fight Club! (metadata is not necessary)
+<<<<<<< HEAD
 
 - trying to work on the edge case of videos with black borders
 - it is quite complex
@@ -42,3 +46,5 @@
 - display error on front end
 - lets do a route that contains the upload component and an error component
 - after causing exception there is an ok button that returns you to upload page
+=======
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445

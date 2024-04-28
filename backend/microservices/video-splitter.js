@@ -65,8 +65,12 @@ function scaleDown(resolution = '0x0', scale = 1){ //resolution is width x heigh
 function splitVideo(input = '/video/path.mp4') {
   processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
     const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
+<<<<<<< HEAD
     // execSplit(newResolution);
     execSplit('512x512');
+=======
+    execSplit(newResolution);
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
   });
 }
 
@@ -75,10 +79,17 @@ function splitVideo(input = '/video/path.mp4') {
 module.exports = splitVideo;
 
 
+<<<<<<< HEAD
 // running this program multiple times without clearing uploads files will overwrite the image (given the file name is the same)
 
 // run in PowerShell from 'backend' dir to clear uploads images from 'uploads' dir:
 // Remove-Item -Path '.\uploads\*' -Recurse
+=======
+// running this program multiple times without clearing output files will overwrite the image (given the file name is the same)
+
+// run in PowerShell from 'backend' dir to clear output images from 'output' dir:
+// Remove-Item -Path '.\output\*' -Recurse
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 
 
 

@@ -4,8 +4,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const API_KEY = process.env.PINECONE_API_KEY;
 
+<<<<<<< HEAD
 //whatever file calls the emitter will continuously run to watch for new files
 // {persistent : Boolean(1)}
+=======
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 import emitter from "./emitter.js";
 
 const pinecone = new Pinecone({

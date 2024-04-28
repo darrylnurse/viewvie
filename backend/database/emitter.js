@@ -2,7 +2,11 @@ import chokidar from 'chokidar';
 import { EventEmitter } from 'events';
 
 const emitter = new EventEmitter();
+<<<<<<< HEAD
 const directory = './uploads';
+=======
+const directory = './output';
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 
 const watcher = chokidar.watch(directory, {
   ignored: /(^|[\/\\])\../, //ignores hidden files

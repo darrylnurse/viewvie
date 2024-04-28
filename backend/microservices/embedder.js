@@ -1,5 +1,6 @@
 // embed image
 // input -> path to image file
+<<<<<<< HEAD
 // uploads -> array of embeddings
 
 const tf = require('@tensorflow/tfjs-node'); //this needs to be npm installed but please put it in gitignore it is HUGE
@@ -18,3 +19,6 @@ async function loadImageAndGetEmbedding(imagePath) {
 loadImageAndGetEmbedding('./uploads/barremove-frame-1.jpg').then(embedding => {
   console.log('Image embedding:', embedding);
 });
+=======
+// output -> array of embeddings
+>>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445

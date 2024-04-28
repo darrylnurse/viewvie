@@ -33,6 +33,5 @@ app.post('/upload', upload.single('video'), (request, response) => {
 app.listen(PORT);
 console.log(`Port is ${PORT}`);
 
-
 //look into a good tutorial to upload videos to server lols
 //process through the file system real quick
