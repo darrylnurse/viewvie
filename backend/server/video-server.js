@@ -13,21 +13,30 @@ const storageEngine = multer.diskStorage({
   filename: (request, file, callback) => {
     console.log(file);
     const ext = file.originalname ? path.extname(String(file.originalname)) : '';
-    const prefix = file.originalname.slice(0, file.originalname.indexOf('.'));
-    callback(null, prefix.replace('_', '-').toLowerCase() + '-' + Date.now() + ext);
+    const prefix = file.originalname
+        .slice(0, file.originalname.indexOf('.'))
+        .replace(/[_\s]+/g, '-')
+        .toLowerCase();
+    console.log(prefix);
+    callback(null, prefix + '-' + Date.now() + ext);
   },
 });
 
 const upload = multer({
   storage: storageEngine,
   fileFilter: (request, file, callback) => {
-    if(file.mimetype.startsWith('video/')) callback(null. Boolean(1));
+    if(file.mimetype.startsWith('video/')) callback(null, Boolean(1));
     else callback(null, false, new Error('You can only upload video files.'));
   }
 });
 
 app.post('/upload', upload.single('video'), (request, response) => {
-  response.send("Image uploaded!");
+  try {
+    const path = request.file.path.replaceAll('\\', '/')
+    splitVideo(path);
+  } catch (error){
+    console.error(error);
+  }
 });
 
 app.listen(PORT);
