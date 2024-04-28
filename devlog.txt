@@ -10,10 +10,7 @@
 - files between modules and database dont actually interact
 - i should totes fix this eventually where microservices has its own package.json
 - eventually..
-<<<<<<< HEAD
 - lol i did it
-=======
->>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
 
 - 😝
 - output file is in gitignore because it can get very large and is often deleted and recreated
@@ -46,5 +43,8 @@
 - display error on front end
 - lets do a route that contains the upload component and an error component
 - after causing exception there is an ok button that returns you to upload page
-=======
->>>>>>> d5d0cfd8aa8e310df2aae089b7702bfea2b55445
+
+- if splitting while uploading doesn't work then i will
+- (die)
+- setup a dir watcher for uploading
+- IT WORKED RAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 🦅🦅🦅🦅🦅
