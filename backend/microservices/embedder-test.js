@@ -1,11 +1,13 @@
 // doesnt work 😭
+// this is only possible in browser runtime
+// possibly we create a browser runtime with puppeteer
 
 const {
   ImageEmbedder,
   FilesetResolver
 } = require('@mediapipe/tasks-vision');
 const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const { JSDOM } = jsdom; //failed me !
 
 const { document } = (new JSDOM(`...`)).window;
 

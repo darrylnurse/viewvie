@@ -14,3 +14,5 @@ Run
 ```npm run clear-media```
 
 from the 'backend' directory to clear all uploads and output (it can get overwhelming).
+
+Of course, project is missing .env file with API key. 

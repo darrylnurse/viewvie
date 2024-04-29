@@ -42,6 +42,7 @@
 - display error on front end
 - lets do a route that contains the upload component and an error component
 - after causing exception there is an ok button that returns you to upload page
+- i included image types
 
 - if splitting while uploading doesn't work then i will
 - (die)
@@ -52,6 +53,6 @@
 - silly git
 
 - tasks fo today
-- test py-child.js command like input
+- test spawn-embedder.js command like input
 - package json script to run everything ✅
 - routes for frontend (admin & user)
