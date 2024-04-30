@@ -36,9 +36,9 @@ function getPrefix(filePath = "/name.type"){
   return filePath.slice(leftCut + 1, rightCut);
 }
 
-function execSplit(input, resolution = '0x0'){
+function execSplit(input, output, resolution = '0x0'){
   const inputPrefix = getPrefix(input);
-  const outputPath = join(__dirname, '..', 'output', `${inputPrefix}-frame-%d.jpg`);
+  const outputPath = join(__dirname, '..', output.toString(), `${inputPrefix}-frame-%d.jpg`);
 
   ffmpeg(input) //new ffmpeg instance from input file
       .outputOptions([
@@ -60,14 +60,14 @@ function scaleDown(resolution = '0x0', scale = 1){ //resolution is width x heigh
   return `${Math.floor(width/scale)}x${Math.floor(height/scale)}`;
 }
 
-function splitVideo(input = '/video/path.mp4') {
+function splitVideo(input = '/video/path.mp4', output = '/frame/output/path/') {
   processVideo(input).then(() => { //gotta make it async or else the following code will process with incorrect input
     const newResolution = scaleDown(videoResolution, 4); //scale down by four :)
-    execSplit(input, newResolution);
+    execSplit(input, output, newResolution);
   });
 }
 
-// splitVideo("./output/barremove-frame-1.jpg");
+// splitVideo("./input/barremove.png", "./admin/output/");
 // works when i am in microservices directory ?? but not in backend
 // fixed methinks
 

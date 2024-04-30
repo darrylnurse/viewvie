@@ -4,6 +4,9 @@ import { EventEmitter } from 'events';
 const emitter = new EventEmitter();
 
 const directory = './output';
+// we watch this directory to be dynamic
+// we will have two emitters, for user and admin with two different paths
+// yes !
 
 const watcher = chokidar.watch(directory, {
   ignored: /(^|[\/\\])\../, //ignores hidden files

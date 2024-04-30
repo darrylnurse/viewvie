@@ -1,6 +1,12 @@
-learning/video-splitter-old.js
-uploads
 ../.env
 .env
-output
+admin/output/*
+admin/uploads/*
+user/output/*
+uploads/*
+!admin/output/.gitkeep
+!admin/uploads/.gitkeep
+!user/output/.gitkeep
+!uploads/.gitkeep
+
 

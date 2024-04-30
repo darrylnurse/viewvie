@@ -53,6 +53,19 @@
 - silly git
 
 - tasks fo today
-- test spawn-embedder.js command like input
+- test spawn-embedder.js command like input ✅
 - package json script to run everything ✅
 - routes for frontend (admin & user)
+
+- i should have put dates for all these logs...
+- admin and user pages use different server routes
+- wait
+- how about
+- admin and user have different upload and output directories
+- two different emitters for each directory
+- work with emitter file to export a function that returns an emitter
+- in video-server, we check the current path, /admin or /user and send to different directories based on that?
+- ^ done, now just need to do two different emitters
+- emitters should go in video-server file
+- put pinecone in there too !
+- could totally just rename that to server and put it in backend root

@@ -29,11 +29,21 @@ const upload = multer({
   }
 });
 
-app.post('/upload', upload.single('video'), (request, response) => {
+app.post('/admin/upload', upload.single('video'), (request, response) => {
   const path = request.file.path.replaceAll('\\', '/')
   console.log(path);
   try {
-    splitVideo(path);
+    splitVideo(path, './admin/output/');
+  } catch (error){
+    console.error(error);
+  }
+});
+
+app.post('/user/upload', upload.single('video'), (request, response) => {
+  const path = request.file.path.replaceAll('\\', '/')
+  console.log(path);
+  try {
+    splitVideo(path, './user/output/');
   } catch (error){
     console.error(error);
   }

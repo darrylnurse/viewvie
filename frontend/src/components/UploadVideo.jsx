@@ -1,10 +1,10 @@
-export default function UploadVideo(){
+export default function UploadVideo({ path }){
   const handleSubmit = async event => {
     event.preventDefault();
     const formData = new FormData(event.target);
     console.log(formData);
 
-    await fetch('http://localhost:3000/upload', {
+    await fetch(`http://localhost:3000/${path}/upload`, {
       method: 'POST',
       body: formData,
     }).catch(console.error);
@@ -12,7 +12,7 @@ export default function UploadVideo(){
 
   return (
       <form
-          className={"p-9 bg-sky-200 h-screen flex flex-col gap-4 justify-center items-center"}
+          className={"p-9 bg-sky-200 h-full flex flex-col gap-4 justify-center items-center"}
           onSubmit={handleSubmit}
           encType={"multipart/form-data"}
       >
