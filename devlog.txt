@@ -69,3 +69,5 @@
 - emitters should go in video-server file
 - put pinecone in there too !
 - could totally just rename that to server and put it in backend root
+- i could also totally just make admin -> uploads into admin-uploads (denest the dir)
+- later
