@@ -71,3 +71,12 @@
 - could totally just rename that to server and put it in backend root
 - i could also totally just make admin -> uploads into admin-uploads (denest the dir)
 - later
+
+- lets add emitter to video-server
+
+- three things for like Friday
+- EMBEDDER
+- DUAL EMITTERS
+- QUERY COMPARE EMBEDDINGS
+
+- PYTHON VIRTUAL ENVIRONMENT!!!
