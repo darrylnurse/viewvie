@@ -83,5 +83,18 @@
 
 - dual emitters time
 - i can change all requires to imports
+- looking like a git issue for an intern
+- remember to still set limit for user uploads! (stretch...)
 
 - it seems like the emitter still emits when things are deleted (LOL) using npm run clear-media
+- lets upsert some more fake vectors and test our weird algo
+- i THINK this is O(n) (could be wrongsies lol)
+- iterates over each embedding generated from a user video
+- queries top k = 1 most similar vector
+- checks if score is above threshold, if it is, add vector from database to pool
+- if it isnt, dont add it
+- at the same time, construct frequency map of metadata movie title of each vector from db
+- at the end, return the most frequent one
+- it should be that movie!
+- if the pool is below a certain ratio, return not found?
+- this would need to be investigated mucho
