@@ -19,7 +19,7 @@ const router =  createBrowserRouter([
         element: <VerifyAdmin />
       },
       {
-        path: "admin",
+        path: "admin-output",
         element: <Admin />
       },
     ]

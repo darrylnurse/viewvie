@@ -1,12 +1,11 @@
 ../.env
 .env
-admin/output/*
-admin/uploads/*
-user/output/*
+admin-output/*
+user-output/*
 uploads/*
-!admin/output/.gitkeep
-!admin/uploads/.gitkeep
-!user/output/.gitkeep
+!admin-output/.gitkeep
+!user-output/.gitkeep
 !uploads/.gitkeep
-
+unused
+input
 

@@ -1,31 +1,42 @@
-// kinda work 😿
-// just missing python embedder
+const path = require('path');
+const { PythonShell } = require("python-shell");
+const os = require("os");
 
-const { spawn } = require('child_process');
-
-function embedImage(path) {
+function executeEmbedder(imagePath) {
   return new Promise((resolve, reject) => {
-    const pythonCommand = `import sys; sys.path.append('.'); from embedder import embed; embed('${path}')`;
-    const result = spawn('python', ['-c', pythonCommand]);
 
-    let output = '';
+    // directory containing python executable
+    const homeDirectory = os.homedir();
+    const pythonExePath = path.join(homeDirectory, 'viewvie', 'Scripts', 'python');
+    const pythonScriptPath = path.join(__dirname, '');
 
-    result.stdout.on('data', data => output += data.toString());
-    result.stderr.on('data', data => new Error(data.toString()));
-    result.on('close', (code) => {
-      if (code === 0) resolve(output.trim());
-      else reject(`Child process exited with error code ${code}`);
+    const py_shell_options = {
+      mode: 'text', //data is sent and received as is
+      pythonPath: pythonExePath,
+      pythonOptions: ['-u'], // print results real-time
+      scriptPath: pythonScriptPath,
+      args: [imagePath],
+    };
+
+    let output = [];
+    const pyShell = new PythonShell('embedder.py', py_shell_options);
+
+    pyShell.on('message', message => output.push(message));
+
+    pyShell.end(function (error, code) {
+      if (error) throw error;
+      else if(code === 0) resolve(output);
+      else reject(`process exited with error code ${code}.`);
     });
-  });
+
+  })
 }
 
-async function embed(imagePath) {
-  try {return await embedImage(imagePath)}
-  catch (error) {return new Error(error)}
+async function embed(imagePath){
+  try { return await executeEmbedder(imagePath) }
+  catch(error) { return new Error(error) }
 }
 
-//embed("beggol").then(result => console.log(result));
+// embed('beggol').then(result => console.log(result));
 
 module.exports = embed;
-
-

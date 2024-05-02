@@ -53,7 +53,7 @@
 - silly git
 
 - tasks fo today
-- test spawn-embedder.js command like input ✅
+- test old-spawn-embedder.js command like input ✅
 - package json script to run everything ✅
 - routes for frontend (admin & user)
 
@@ -80,3 +80,8 @@
 - QUERY COMPARE EMBEDDINGS
 
 - PYTHON VIRTUAL ENVIRONMENT!!!
+
+- dual emitters time
+- i can change all requires to imports
+
+- it seems like the emitter still emits when things are deleted (LOL) using npm run clear-media

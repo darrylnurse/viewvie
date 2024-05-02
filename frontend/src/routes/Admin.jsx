@@ -4,7 +4,7 @@ export default function Admin(){
   return (
       <>
         Admin
-        <UploadVideo path={"admin"}/>
+        <UploadVideo path={"admin-output"}/>
       </>
   )
 }

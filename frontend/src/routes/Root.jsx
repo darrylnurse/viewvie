@@ -19,7 +19,7 @@ export default function Root(){
                 className={"bg-sky-200 p-2 rounded-lg"}
                 onClick={() => navigate("verify")}
             >
-              Admin {/*we should check if user is already logged in and if yes this button does nothing*/}
+              Admin {/*we should check if user-output is already logged in and if yes this button does nothing*/}
             </button>
           </nav>
         </header>
