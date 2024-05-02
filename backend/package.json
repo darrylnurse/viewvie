@@ -27,7 +27,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clear-media": "concurrently \"@powershell Remove-Item -Path '.\\admin-output\\*' -Recurse\"  \"@powershell Remove-Item -Path '.\\user-output\\*' -Recurse\" \"@powershell Remove-Item -Path '.\\uploads\\*' -Recurse\" \"@powershell touch '.\\user-output\\.gitkeep'\" \"@powershell touch '.\\admin-output\\.gitkeep'\""
+    "clear-media": "(@powershell Remove-Item -Path '.\\admin-output\\*' -Recurse) && (@powershell Remove-Item -Path '.\\user-output\\*' -Recurse) && (@powershell Remove-Item -Path '.\\uploads\\*' -Recurse) && (@powershell touch '.\\user-output\\.gitkeep') && (@powershell touch '.\\admin-output\\.gitkeep') && (@powershell touch '.\\uploads\\.gitkeep')"
   },
   "author": "",
   "license": "ISC",
