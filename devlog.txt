@@ -22,7 +22,7 @@
 - admin -> upload video -> beep bop *gear sounds* -> uploaded to backend WITH metadata
 - user -> upload video -> beep bop *softer gear sounds* -> This movie is Fight Club! (metadata is not necessary)
 
-- trying to work on the edge case of videos with black borders
+- trying to work on the edge case of videos with black borders ❗issue
 - it is quite complex
 - i would need to run ffplay in bash (it has no node support like ffmpeg)
 - and get those values to put into my ffmpeg call
@@ -39,7 +39,7 @@
 - frontend
 - throws error if upload is not a video
 - we can include image types later
-- display error on front end
+- display error on front end ❗issue
 - lets do a route that contains the upload component and an error component
 - after causing exception there is an ok button that returns you to upload page
 - i included image types
@@ -82,11 +82,11 @@
 - PYTHON VIRTUAL ENVIRONMENT!!!
 
 - dual emitters time
-- i can change all requires to imports
+- i can change all requires to imports ❗issue
 - looking like a git issue for an intern
-- remember to still set limit for user uploads! (stretch...)
+- remember to still set limit for user uploads! (stretch...) ❗issue
 
-- it seems like the emitter still emits when things are deleted (LOL) using npm run clear-media
+- it seems like the emitter still emits when things are deleted (LOL) using npm run clear-media ❗issue
 - lets upsert some more fake vectors and test our weird algo
 - i THINK this is O(n) (could be wrongsies lol)
 - iterates over each embedding generated from a user video
@@ -99,10 +99,16 @@
 - if the pool is below a certain ratio, return not found?
 - this would need to be investigated mucho
 
-- movies having different numbers of vectors in the database can skew results
+- movies having different numbers of vectors in the database can skew results ❗issue
 - for mvp, movies in database should all be the same length
 - just to test functionality
 - work on front-end routes
 - work on sending data to front-end
 - usecontext to stop from verifying admin
+- there was a goofy solution for this lol ❗issue
+
+- how cool would an api that matches the movie name to a picture be ???
+- (very cool)
+- could make routes cleaner ❗issue
+- make routing button component ❗issue
 

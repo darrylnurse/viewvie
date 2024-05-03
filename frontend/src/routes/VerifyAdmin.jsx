@@ -1,13 +1,16 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+
+const USERNAME = import.meta.env.VITE_ADMIN_USER;
+const PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 export default function VerifyAdmin(){
 
   const navigate = useNavigate();
 
   const admin = {
-    username: "ayanib",
-    password: "rafidlikesminecraft"
+    username: USERNAME,
+    password: PASSWORD
   };
 
   const [login, setLogin] = useState({
@@ -43,10 +46,6 @@ export default function VerifyAdmin(){
       alert("Username or Password incorrect.");
     }
   }
-
-  useEffect(() => {
-    console.log(login);
-  }, [login]);
 
   const inputStyle = "rounded-lg p-3";
   const inputContainerStyle = "flex flex-col w-1/4";

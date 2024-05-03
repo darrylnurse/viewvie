@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import './index.css';
-import { Root, User, Admin, VerifyAdmin, Error, Upsert, UserResults} from "./routes/exporter.js";
+import {Root, User, Admin, VerifyAdmin, Error, Upsert, UserResults, AdminResult} from "./routes/exporter.js";
 
 const router =  createBrowserRouter([
   {
@@ -29,6 +29,10 @@ const router =  createBrowserRouter([
           {
             path: "upsert",
             element: <Upsert />
+          },
+          {
+            path: "results",
+            element: <AdminResult />
           },
         ]
       },

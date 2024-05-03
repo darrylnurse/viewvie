@@ -5,3 +5,4 @@ export { default as VerifyAdmin } from "./VerifyAdmin.jsx";
 export { default as Error } from  "./Error.jsx";
 export { default as Upsert } from "./Upsert.jsx";
 export { default as UserResults } from "./UserResults.jsx";
+export { default as AdminResult } from "./AdminResult.jsx";
