@@ -68,7 +68,7 @@ function splitVideo(input = '/video/path.mp4', output = '/frame/output/path/') {
 }
 
 // splitVideo("./input/barremove.png", "./admin-output/output/");
-// works when i am in microservices directory ?? but not in backend
+// works when i am in units directory ?? but not in backend
 // fixed methinks
 
 module.exports = splitVideo;

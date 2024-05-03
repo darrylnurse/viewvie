@@ -1,9 +1,9 @@
 import express, {request, response} from 'express';
 import multer from 'multer';
 import path from "node:path";
-import splitVideo from './microservices/video-splitter.js';
+import splitVideo from './units/video-splitter.js';
 import { Pinecone } from "@pinecone-database/pinecone";
-import emitterSpawner from "./microservices/spawn-emitter.js";
+import emitterSpawner from "./units/spawn-emitter.js";
 
 import * as dotenv from "dotenv";
 dotenv.config();
