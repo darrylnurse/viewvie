@@ -1,10 +1,9 @@
-import UploadVideo from "../components/UploadVideo.jsx";
+import {Outlet} from "react-router-dom";
 
 export default function Admin(){
   return (
       <>
-        Admin
-        <UploadVideo path={"admin-output"}/>
+        <Outlet/>
       </>
   )
 }

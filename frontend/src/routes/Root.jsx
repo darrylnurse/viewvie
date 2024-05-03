@@ -4,6 +4,11 @@ export default function Root(){
 
   const navigate = useNavigate();
 
+  const handleAdmin = () => {
+    // fake user session 😭
+    if(!window.location.pathname.toString().endsWith("upsert")) navigate("admin");
+  }
+
   return (
       <div className={"flex flex-col h-screen"}>
         <header className={"h-[10%] bg-sky-400 flex justify-between items-center px-12"}>
@@ -17,7 +22,7 @@ export default function Root(){
             </button>
             <button
                 className={"bg-sky-200 p-2 rounded-lg"}
-                onClick={() => navigate("verify")}
+                onClick={handleAdmin}
             >
               Admin {/*we should check if user-output is already logged in and if yes this button does nothing*/}
             </button>

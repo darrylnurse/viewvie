@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import './index.css';
-import { Root, User, Admin, VerifyAdmin, Error} from "./routes/exporter.js";
+import { Root, User, Admin, VerifyAdmin, Error, Upsert, UserResults} from "./routes/exporter.js";
 
 const router =  createBrowserRouter([
   {
@@ -15,12 +15,22 @@ const router =  createBrowserRouter([
         element: <User />
       },
       {
-        path: "verify",
-        element: <VerifyAdmin />
+        path: "results",
+        element: <UserResults />
       },
       {
-        path: "admin-output",
-        element: <Admin />
+        path: "admin",
+        element: <Admin />,
+        children: [
+          {
+            index: Boolean("hey guys"),
+            element: <VerifyAdmin />
+          },
+          {
+            path: "upsert",
+            element: <Upsert />
+          },
+        ]
       },
     ]
   }

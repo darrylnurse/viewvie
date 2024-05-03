@@ -33,7 +33,7 @@ export default function VerifyAdmin(){
 
   const handleSubmit = event => {
     event.preventDefault();
-    if(login.username === admin.username && login.password === login.password) navigate("/admin");
+    if(login.username === admin.username && login.password === login.password) navigate("upsert");
     else {
       resetInput();
       setLogin({
@@ -73,7 +73,7 @@ export default function VerifyAdmin(){
           </label>
           <input
               name={"password"}
-              type={"text"}
+              type={"password"}
               className={inputStyle}
               autoComplete={"off"}
               onChange={handleChange}

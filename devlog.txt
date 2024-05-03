@@ -102,4 +102,7 @@
 - movies having different numbers of vectors in the database can skew results
 - for mvp, movies in database should all be the same length
 - just to test functionality
-- w
+- work on front-end routes
+- work on sending data to front-end
+- usecontext to stop from verifying admin
+
