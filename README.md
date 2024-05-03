@@ -36,7 +36,7 @@ Install the python dependencies by running each one in your CLI:
 <br/><br/>
 After these packages have installed, you can type ```deactivate``` in the CLI to deactivate the virtual environment.
 <br/><br/>
-Now, we can safely run ```npm run start-all``` from the 'viewvie' directory to start the application! You will see a ``` http://localhost:5173/``` in your console - click it to open the application in your browser.
+Now, we can safely run ```npm run start-all``` from the 'viewvie' directory to start the application! You will see a ```http://localhost:5173/``` in your console - click it to open the application in your browser.
 <br/><br/>
 If you need to, run ```npm run clear-media``` from the 'backend' directory to clear all uploads and output (it can get overwhelming).
 <br/><br/>
