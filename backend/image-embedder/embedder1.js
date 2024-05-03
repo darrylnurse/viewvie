@@ -17,16 +17,15 @@ fs.readFile('../image-embedder/superman.jpg', (err, data) => {
     image = data
 })
 
-/* const input = {
+const input = {
     'input': 'guacamole sauce',
     'modality': "text"
-}; */
+};
 
 const embedding = await replicate.run(
     "daanelson/imagebind:0383f62e173dc821ec52663ed22a076d9c970549c209666ac3db181618b7a304", {
         input: {
-            'input': 'guacamole sauce',
-            'modality': "text"
+            input
         }
     }
 );
