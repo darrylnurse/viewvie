@@ -112,3 +112,8 @@
 - could make routes cleaner ❗issue
 - make routing button component ❗issue
 
+- batch processing ! :D
+- find absolute path of path
+
+- we can actually put the files for the virtual server in the project maybe?
+

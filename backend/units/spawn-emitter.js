@@ -17,6 +17,7 @@ function emitterSpawner(directory, name) { // exports emitter spawner so events 
   // input type is a path to an image
   // embedding function is async
   function handleAdd(path) { //this function is called on each new image that is added to the directory
+    console.log("Path is", path);
     embed(path)
         .then(embedding => emitter.emit('newEmbedding', embedding)) //result of embedding is passed to emitter which emits a signal to trigger an event
         .catch(error => console.error('Embedding error:', error));

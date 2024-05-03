@@ -3,6 +3,9 @@ const { PythonShell } = require("python-shell");
 const os = require("os");
 
 function executeEmbedder(imagePath) {
+  const imageAbsolutePath = path.resolve(imagePath);
+  console.log(imageAbsolutePath);
+
   return new Promise((resolve, reject) => {
 
     // directory containing python executable
@@ -11,7 +14,7 @@ function executeEmbedder(imagePath) {
     const pythonScriptPath = path.join(__dirname, '');
 
     const py_shell_options = {
-      mode: 'text', //data is sent and received as is
+      mode: 'text',
       pythonPath: pythonExePath,
       pythonOptions: ['-u'], // print results real-time
       scriptPath: pythonScriptPath,
@@ -37,6 +40,6 @@ async function embed(imagePath){
   catch(error) { return new Error(error) }
 }
 
-//embed('beggol').then(result => console.log(result));
+//embed('./units/barremove.png').then(result => console.log(result[0]));
 
 module.exports = embed;

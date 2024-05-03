@@ -30,11 +30,9 @@ This is where we will install dependencies for our embedder module.
 <br/><br/>
 Install the python dependencies by running each one in your CLI:
 <br/><br/>
-```pip install ...```
+```pip install mediapipe```
 
-```pip install ...```
-
-```pip install ...```
+```pip install opencv-python```
 <br/><br/>
 After these packages have installed, you can type ```deactivate``` in the CLI to deactivate the virtual environment.
 <br/><br/>

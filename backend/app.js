@@ -74,18 +74,8 @@ app.post('/user/upload', upload.single('video'), (request, response) => {
 
 const userOutputDir = path.join(__dirname, 'user-output');
 const userEmitter = emitterSpawner(userOutputDir, 'user');
-userEmitter.on('newEmbedding', embedding => {
-  console.log(`Here is your embedding: ${embedding}`); //we will use query vector here
-});
 
-const adminOutputDir = path.join(__dirname, 'admin-output');
-const adminEmitter = emitterSpawner(adminOutputDir, 'admin');
-adminEmitter.on('newEmbedding', embedding => {
-  console.log(`Here is your embedding: ${embedding}`); //we will use upsert vector here
-  console.log(`Attached metadata is ${metadataTitle}`)
-});
-
-// add all embeddings to an array of vectors
+// add all vectors to an array
 /*
 * [
 *   {values: [vector, of, embeddings]
@@ -98,6 +88,17 @@ adminEmitter.on('newEmbedding', embedding => {
 // show x (3) movies
 // iterate over movie and create an array of objects
 // {movieName: movie, percentChance: x%}
+userEmitter.on('newEmbedding', embedding => {
+  console.log(`Here is your embedding: ${embedding}`); //we will use query vector here
+});
+
+// again add all vectors to an array, formatting each one with a random id and the movie title metadata
+const adminOutputDir = path.join(__dirname, 'admin-output');
+const adminEmitter = emitterSpawner(adminOutputDir, 'admin');
+adminEmitter.on('newEmbedding', embedding => {
+  console.log(`Here is your embedding: ${embedding}`); //we will use upsert vector here
+  console.log(`Attached metadata is ${metadataTitle}`)
+});
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
