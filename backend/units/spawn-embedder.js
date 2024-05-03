@@ -37,6 +37,6 @@ async function embed(imagePath){
   catch(error) { return new Error(error) }
 }
 
-// embed('beggol').then(result => console.log(result));
+//embed('beggol').then(result => console.log(result));
 
 module.exports = embed;
