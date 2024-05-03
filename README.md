@@ -24,7 +24,7 @@ Run ```python -m venv viewvie  ``` in your CLI to initialize the virtual environ
 <br/><br/>
 This will create a virtual environment file (named viewvie) in your user directory.
 <br/><br/>
-Use ```viewvie\Scripts\activate``` in your CLI to activate the virtual environment.
+Use ```viewvie\Scripts\activate``` in your CLI to activate the virtual environment. If your commands (even before your C: directory) start with ```(viewvie)```, the environment has been set up correctly!
 <br/><br/>
 This is where we will install dependencies for our embedder module.
 <br/><br/>
@@ -36,8 +36,10 @@ Install the python dependencies by running each one in your CLI:
 
 ```pip install ...```
 <br/><br/>
+After these packages have installed, you can type ```deactivate``` in the CLI to deactivate the virtual environment.
+<br/><br/>
 Now, we can safely run ```npm run start-all``` from the 'viewvie' directory to start the application. : )
 <br/><br/>
 If you need to, run ```npm run clear-media``` from the 'backend' directory to clear all uploads and output (it can get overwhelming).
 <br/><br/>
-Of course, project is missing .env file with Pinecone API key. You can set this up by adding a ```.env``` file to the 'backend' directory, and adding ```PINECONE_API_KEY='<actual-api-key-not-this-this-is-not-an-api-key>'``` to it, Contact me for details on the Pinecone API key. =)
+Of course, project is missing .env file with Pinecone API key. You can set this up by adding a ```.env``` file to the 'backend' directory, and adding ```PINECONE_API_KEY='<actual-api-key-not-this-this-is-not-an-api-key>'``` to it. Contact me for details on the Pinecone API key. =)
