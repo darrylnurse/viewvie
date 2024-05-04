@@ -6,12 +6,13 @@ import cors from 'cors';
 import splitVideo from './units/video-splitter.js';
 import { Pinecone } from "@pinecone-database/pinecone";
 import emitterSpawner from "./units/spawn-emitter.js";
-
 import * as dotenv from "dotenv";
+
 dotenv.config();
 const API_KEY = process.env.PINECONE_API_KEY;
 
 import { fileURLToPath } from 'url';
+import formatVector from "./units/format-vector.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -88,16 +89,36 @@ const userEmitter = emitterSpawner(userOutputDir, 'user');
 // show x (3) movies
 // iterate over movie and create an array of objects
 // {movieName: movie, percentChance: x%}
+
+let userVectors = []
 userEmitter.on('newEmbedding', embedding => {
-  console.log(`Here is your embedding: ${embedding}`); //we will use query vector here
+  //console.log(`Here is your embedding: ${embedding}`); //we will use query vector here
 });
 
 // again add all vectors to an array, formatting each one with a random id and the movie title metadata
 const adminOutputDir = path.join(__dirname, 'admin-output');
-const adminEmitter = emitterSpawner(adminOutputDir, 'admin');
+const adminVectors = [];
+const adminEmitter = emitterSpawner(adminOutputDir, 'admin', metadataTitle);
+
+const pinecone = new Pinecone({
+  apiKey: '52c79467-4130-414a-a180-3d652c890de4',
+});
+
+const index = pinecone.index("viewvie");
+
 adminEmitter.on('newEmbedding', embedding => {
-  console.log(`Here is your embedding: ${embedding}`); //we will use upsert vector here
-  console.log(`Attached metadata is ${metadataTitle}`)
+  adminVectors.push(embedding);
+  // console.log(adminVectors);
+});
+
+adminEmitter.on("finished", () => {
+  if (adminVectors.length > 0) {
+    index.namespace("test").upsert(adminVectors)
+        .then(() => console.log("Success!"))
+        .catch(err => console.error("Upsert failed:", err));
+  } else {
+    console.error("No vectors provided for upsert request");
+  }
 });
 
 app.use(bodyParser.urlencoded({extended: false}))

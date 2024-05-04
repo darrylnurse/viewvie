@@ -14,7 +14,7 @@ function executeEmbedder(imagePath) {
     const pythonScriptPath = path.join(__dirname, '');
 
     const py_shell_options = {
-      mode: 'text',
+      mode: 'json',
       pythonPath: pythonExePath,
       pythonOptions: ['-u'], // print results real-time
       scriptPath: pythonScriptPath,
