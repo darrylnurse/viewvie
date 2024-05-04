@@ -2,7 +2,7 @@ const path = require('path');
 const { PythonShell } = require("python-shell");
 const os = require("os");
 
-function executeEmbedder(imagePath) {
+function executeEmbedder(dirPath) {
 
   return new Promise((resolve, reject) => {
 
@@ -16,11 +16,11 @@ function executeEmbedder(imagePath) {
       pythonPath: pythonExePath,
       pythonOptions: ['-u'], // print results real-time
       scriptPath: pythonScriptPath,
-      args: [imagePath],
+      args: [dirPath],
     };
 
     let output = [];
-    const pyShell = new PythonShell('embedder.py', py_shell_options);
+    const pyShell = new PythonShell('new-embedder.py', py_shell_options);
 
     pyShell.on('message', message => output.push(message));
 
@@ -38,6 +38,6 @@ async function embed(imagePath){
   catch(error) { return new Error(error) }
 }
 
-//embed('./units/barremove.png').then(result => console.log(result[0]));
+embed('./user-output').then(result => console.log(result[0]));
 
 module.exports = embed;

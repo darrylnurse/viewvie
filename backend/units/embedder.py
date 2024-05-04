@@ -1,3 +1,5 @@
+# processed around 200 images then failed
+
 # final result must be printed
 # pip install mediapipe
 # pip install opencv-python
