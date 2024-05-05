@@ -26,15 +26,14 @@ async function processVideo(input){
   }
 }
 
-const FRAMERATE = 0.033; //in milliseconds
-const FPS = 30; //frames per second
-
 function getPrefix(filePath = "/name.type"){
   while(filePath.startsWith('.')) filePath = filePath.slice(1);
   const leftCut = filePath.lastIndexOf('/');
   const rightCut = filePath.indexOf('.');
   return filePath.slice(leftCut + 1, rightCut);
 }
+
+const FRAMERATE = 24; //in milliseconds
 
 function execSplit(input, output, resolution = '0x0'){
   const inputPrefix = getPrefix(input);
@@ -43,7 +42,7 @@ function execSplit(input, output, resolution = '0x0'){
   ffmpeg(input) //new ffmpeg instance from input file
       .outputOptions([
           '-vf', //allows you to chain video filters
-          `fps=1/${FRAMERATE},scale=${resolution}`, //scale denotes the resolution: 'widthxheight'
+          `fps=${FRAMERATE},scale=${resolution}`, //scale denotes the resolution: 'widthxheight'
       ])
       .output(outputPath) //hyphens are word separators, underscores are word joiners
       .on('error', err => console.log("Didn't work: ", err.message))

@@ -38,8 +38,6 @@ After these packages have installed, you can type ```deactivate``` in the CLI to
 <br/><br/>
 Now, we can safely run ```npm run start-all``` from the 'viewvie' directory to start the application! You will see a ```http://localhost:5173/``` in your console - click it to open the application in your browser.
 <br/><br/>
-If you need to, run ```npm run clear-media``` from the 'backend' directory to clear all uploads and output (it can get overwhelming).
-<br/><br/>
 Of course, project is missing .env file with Pinecone API key. You can set this up by adding a ```.env``` file to the 'backend' directory, and adding ```PINECONE_API_KEY='<actual-api-key-not-this-this-is-not-an-api-key>'``` to it. Contact me for details on the Pinecone API key. =)
 <br/><br/>
 For now, we have a very limited pool of movies in our database. There is functionality in the application to add more, but we want to straighten out load balancing first before we let users test this out. Temporarily, we will provide sample video clips to test the applications. They will be labeled with the actual movie name (which you wouldn't actually know). Some will match movies in our database, and some will not. They can be downloaded in the 'test-input' directory.

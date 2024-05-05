@@ -1,5 +1,5 @@
 const queryVector = require("./query-vector");
-const createVectorObjects = require("./fake-vectors.js");
+// const createVectorObjects = require("../unused/fake-vectors.js");
 
 async function processVectors(vectors, threshold, threadLimit){
   // filLs array with placeholder resolved promises
@@ -52,18 +52,20 @@ const manualTestVectors = [ //should return map with mostly 'Ponyo'
   {values: [0.999854565, 0.143655136, 0.822920918, 0.59830606, 0.209197938, 0.540235639, 0.635648549, 0.574151456, 0.110169314, 0.644152403, 0.602921546, 0.344503641, 0.536449, 0.555844, 0.725565, 0.90431267, 0.25058037, 0.974824607, 0.553342, 0.720044494, 0.476694822, 0.765811563, 0.398647934, 0.998697, 0.456882864, 0.298202544, 0.33991316, 0.407226145, 0.0522773862, 0.73659271, 0.43893069, 0.455564141, 0.719668508, 0.844665527, 0.898179889, 0.575094223, 0.347687185, 0.299913079, 0.886566341, 0.293806672, 0.622946262, 0.607191265, 0.313708812, 0.0520481, 0.772175312, 0.532997727, 0.229858607, 0.589309096, 0.0796463117, 0.773673117, 0.601165891, 0.243637934, 0.738599062, 0.315510392, 0.0569179766, 0.507088184, 0.785760343, 0.919487476, 0.681663454, 0.806289256, 0.0914489254, 0.602078795, 0.251592338, 0.989819109, 0.236144826, 0.052343443, 0.0912815705, 0.591515481, 0.899419, 0.651846111, 0.453058034, 0.863045156, 0.476744503, 0.42147252, 0.164147377, 0.689530671, 0.26809302, 0.98841548, 0.456825674, 0.919959486, 0.82723546, 0.931126654, 0.0515618324, 0.240764141, 0.22870779, 0.670317769, 0.290222377, 0.504990458, 0.405070096, 0.644390583, 0.253956348, 0.361322612, 0.674093962, 0.266258746, 0.500493526, 0.0415835716, 0.735410213, 0.873805523, 0.139340833, 0.822853327]}
 ]
 // runs the algorithm
-async function findMovie() {
-  const testVectors = createVectorObjects(450, 100,"movieTitle", "Amongus the Movie");
+async function findMovie(vectors, threshold) {
+  // const testVectors = createVectorObjects(450, 100,"movieTitle", "Amongus the Movie");
   // threshold should be between 0 and 1, preferably a high number
   // with larger dimensions threshold might be slightly lower
-  return queryAlgorithm(testVectors, 0.80);
+  return queryAlgorithm(vectors, threshold);
 }
 // 450 frames seems to be a sweet spot
 // it takes around 25 seconds to execute
 // and gives users about 15 seconds of footage to upload
 
-const start = performance.now();
-findMovie().then(result => {
-  const end = performance.now();
-  console.log(result, "\n", (end - start)/1000, "seconds");
-});
+// const start = performance.now();
+// findMovie().then(result => {
+//   const end = performance.now();
+//   console.log(result, "\n", (end - start)/1000, "seconds");
+// });
+
+module.exports = findMovie;

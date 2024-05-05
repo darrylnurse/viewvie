@@ -117,3 +117,8 @@
 
 - we can actually put the files for the virtual server in the project maybe?
 
+- reduced fps to 24 for efficiency (also movies lol)
+- database to hold split frames instead of chokidar ❗issue
+- check for new entries in database
+- make admin results match effect of user results
+- leave toji video for demo...
