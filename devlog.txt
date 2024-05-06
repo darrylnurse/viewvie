@@ -122,3 +122,5 @@
 - check for new entries in database
 - make admin results match effect of user results
 - leave toji video for demo...
+
+- docker ! ! !
