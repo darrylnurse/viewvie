@@ -8,8 +8,8 @@
     "start-all": "concurrently \"nodemon backend/app.js\"  \"cd frontend && npm run dev\"",
     "install-all": "(npm install) && (cd frontend && npm install) && (cd ..) && (cd backend && npm install)",
     "start": "node backend/app.js",
-    "build-frontend": "cd frontend && npm install && npm run build",
-    "postinstall": "npm run build-frontend"
+    "build": "cd frontend && npm install && npm run build",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -7,7 +7,7 @@ export default function UserResults() {
 
   useEffect(() => {
     async function fetchData() {
-      setLoading(true);  // Start loading before fetching
+      setLoading(true);
       try {
         const response = await fetch("http://localhost:3000/user-results");
         if (response.ok) {
@@ -16,28 +16,26 @@ export default function UserResults() {
         } else return new Error('Failed to fetch results');
       } catch (error) {
         console.error('Error:', error);
-        setData([]);  // Reset data on error
+        setData([]);
       }
-      setLoading(false);  // Stop loading after fetching
+      setLoading(false);
     }
 
     fetchData().catch(console.error);
-  }, [loading]);  // Dependencies array might include state that indicates data is ready
+  }, [loading]);
 
-  if (loading) {
-    return <div>Loading results...</div>;  // Loading indicator
-  }
+  if (loading) return <div className={"h-full bg-orange-200 flex justify-center items-center"}>Loading results...</div>;
 
   return (
       <div className={"bg-orange-300 h-full p-4 grid grid-cols-3 gap-4"}>
-        {data.map((movie, index) => (
+        {data.length > 0 ? data.map((movie, index) => (
             <div key={index}>
               <LoadingResult
                   title={movie.title}
                   match={movie.percentage.toString()}
               />
             </div>
-        ))}
+        )) : <div className={"col-span-3 flex justify-center items-center"}>No matches.</div>}
       </div>
   );
 }

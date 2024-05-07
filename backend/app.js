@@ -123,7 +123,7 @@ let userResults = null;
 let resultArray = [];
 let resultsReady = false;
 userEmitter.on('user-finished', async () => {
-  userResults = await findMovie(userVectors, 0.90);
+  userResults = await findMovie(userVectors, 0.95);
 
   userVectors.length = 0;
   let total = userResults ? Array.from(userResults.values()).reduce((a, b) => a + b, 0) : 0;
@@ -154,13 +154,6 @@ app.get("/user-results", (request, response) => {
     }));
   }
 });
-
-app.use(express.static(path.join(__dirname, 'frontend/dist')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
-});
-
 
 purgeDirectory()
     .then(() =>
