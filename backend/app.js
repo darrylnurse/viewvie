@@ -46,6 +46,7 @@ const upload = multer({
 app.use(cors());
 
 app.post('/admin/upload', upload.single('video'), (request, response) => {
+  resultsReady = false;
   const path = request.file.path.replaceAll('\\', '/')
   metadataTitle = request.body.title[0];
   try {
@@ -58,7 +59,8 @@ app.post('/admin/upload', upload.single('video'), (request, response) => {
 });
 
 app.post('/user/upload', upload.single('video'), (request, response) => {
-  const path = request.file.path.replaceAll('\\', '/')
+  resultsReady = false;
+  const path = request.file.path.replaceAll('\\', '/');
   console.log(path);
   try {
     splitVideo(path, './user-output/');
@@ -144,9 +146,11 @@ app.use(bodyParser.json());
 
 app.get("/user-results", (request, response) => {
   if (!resultsReady) {
+    console.log("Results are not ready.");
     return response.status(202).json({ message: "Results are still being prepared. Please try again later." });
   } else {
-    response.json(resultArray.map((movieObject, index) => {
+    console.log("Results are ready.");
+    response.json(resultArray.map(movieObject => {
       return {
         title: movieObject.title,
         percentage: movieObject.percentage
@@ -155,7 +159,10 @@ app.get("/user-results", (request, response) => {
   }
 });
 
-purgeDirectory()
-    .then(() =>
+purgeDirectory(
+    "./backend/admin-output",
+    "./backend/user-output",
+    "./backend/uploads"
+).then(() =>
         app.listen(PORT, () => console.log(`Server is running on port ${PORT}.`)));
 

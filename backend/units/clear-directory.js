@@ -13,10 +13,10 @@ async function resetDirectory(directory, filename) {
   }
 }
 
-async function purgeDirectory(){
-  resetDirectory("./backend/admin-output", ".gitkeep").catch(console.error);
-  resetDirectory("./backend/user-output", ".gitkeep").catch(console.error);
-  resetDirectory("./backend/uploads", ".gitkeep").catch(console.error);
+async function purgeDirectory(...directories){
+  for(const directory of directories){
+    resetDirectory(directory, ".gitkeep").catch(console.error);
+  }
   console.log("Directories purged.");
 }
 
