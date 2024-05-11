@@ -1,7 +1,39 @@
-# Viewvie!
+# Viewvie! - Shazam, but for movies!
 
-So glad you came!
-<br/><br/>
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+
+Viewvie is able to ascertain the name of the uploaded video, by matching its frame embeddings to what is stored in its database. The metadata of the most prominent matches are returned to the user, telling them the name of the video.
+
+Unfortunately, for now we face optimization issues, and have limited our testing (and use) to short clips of around 2-5 seconds. We recommend you stay within this range as well when [trying it locally on your system](#setup). 
+
+This project is also very early in development. =)
+
+# Demo
+
+Here we have two videos, the first which was upserted to our Vector Database with metadata containing its title, and the second which was not upserted.
+
+![okkotsu-yutas-rage](https://github.com/darrylnurse/viewvie/assets/126132293/fe455c36-1816-44b9-b99b-247d6507c4eb)
+
+![todos-resolve](https://github.com/darrylnurse/viewvie/assets/126132293/fca98434-2d56-4275-960f-ac6db84d0ca4)
+
+On the front-end, querying both videos yields the following results respectively: 
+
+![Screenshot 2024-05-11 160111](https://github.com/darrylnurse/viewvie/assets/126132293/3668ba9d-ac4f-44ba-bbef-9b6bdd9d4911)
+
+![Screenshot 2024-05-11 161612](https://github.com/darrylnurse/viewvie/assets/126132293/d3fe62d2-f10c-4b7e-9dca-43c075d010f5)
+
+For the first video, the application correctly predicted the name of the video, as it was present in the dataset. For our second video, it correctly ascertained that there was no match for the video, as it was not in the database. Feel free to try your own inputs for the querying, but only the ones in the test-input directory, or any frames (you can upload images) or snippets from the same videos will yield any results.
+
+# Setup
+
 Just a disclaimer, unfortunately, in the face of our time (and budget) constraints, we do not have support for Mac or Linux users. This is because I say so. (Unfortunately like a shortsightedly architectured house, I only have Windows.)
 <br/><br/>
 Let's get started.
