@@ -13,7 +13,7 @@ function createId(idLength = 5){
 function formatVector(vector, metadata) {
   return {
     'id': createId(10),
-    'values': vector[0],
+    'values': vector,
     'metadata': {
       'movieTitle': metadata,
     }

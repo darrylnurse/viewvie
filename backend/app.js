@@ -86,11 +86,11 @@ adminEmitter.on('new-admin-embedding', embedding => {
   // console.log(adminVectors.length);
 });
 
-adminEmitter.on("admin-finished", () => {
+adminEmitter.once("admin-finished", () => {
   if (adminVectors.length > 0) {
     index.namespace("test").upsert(adminVectors)
         .then(() =>{
-          console.log("Success!")
+          console.log("Vectors upserted successfully.")
           adminVectors.length = 0;
         })
         .catch(err => console.error("Upsert failed:", err));
@@ -124,7 +124,7 @@ userEmitter.on('new-user-embedding', embedding => { //we will use query vector h
 let userResults = null;
 let resultArray = [];
 let resultsReady = false;
-userEmitter.on('user-finished', async () => {
+userEmitter.once('user-finished', async () => {
   userResults = await findMovie(userVectors, 0.95);
 
   userVectors.length = 0;
@@ -143,6 +143,11 @@ userEmitter.on('user-finished', async () => {
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
+
+process.on('exit', () => {
+  adminEmitter.removeAllListeners();
+  userEmitter.removeAllListeners();
+});
 
 app.get("/user-results", (request, response) => {
   if (!resultsReady) {

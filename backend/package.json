@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@google-cloud/aiplatform": "^3.21.0",
     "@mediapipe/tasks-vision": "^0.10.12",
     "@pinecone-database/pinecone": "^2.2.0",
     "agent-base": "^7.1.1",

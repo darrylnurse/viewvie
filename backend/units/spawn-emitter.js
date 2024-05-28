@@ -1,6 +1,7 @@
 const chokidar = require('chokidar');
 const EventEmitter = require('events').EventEmitter;
-const embed = require('./spawn-embedder.js');
+// const embed = require('./spawn-embedder.js');
+const cloudEmbed = require('./google-embedder');
 const {readFileSync, writeFileSync} = require("fs");
 
 function emitterSpawner(directory, name) { // exports emitter spawner so events here can trigger upsertion
@@ -17,7 +18,7 @@ function emitterSpawner(directory, name) { // exports emitter spawner so events 
   let activeEmbeddings = 0;
   function handleAdd(path) { //this function is called on each new image that is added to the directory
     activeEmbeddings++;
-    embed(path)
+    cloudEmbed(path)
         .then(embedding => {
           if (embedding) emitter.emit(`new-${name}-embedding`, embedding);
           activeEmbeddings--;
@@ -38,6 +39,11 @@ function emitterSpawner(directory, name) { // exports emitter spawner so events 
       console.log(`${name} embeddings complete.`);
     }
   }
+
+  process.on('exit', () => {
+    watcher.close().catch(console.error);
+    emitter.removeAllListeners();
+  });
 
   return emitter;
 }

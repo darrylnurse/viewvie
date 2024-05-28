@@ -126,4 +126,13 @@
 
 - docker ! ! !
 
--server side rendering could reduce inconsistencies
+- server side rendering could reduce inconsistencies
+
+- use google cloud to store
+- no gpu or cpu support on hosting service
+- google service api embedder
+
+- i can decrease the dimensions now!!!!
+- faster embedding
+
+- bad memory leak..
