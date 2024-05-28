@@ -32,6 +32,10 @@ On the front-end, querying both videos yields the following results respectively
 
 For the first video, the application correctly predicted the name of the video, as it was present in the dataset. For our second video, it correctly ascertained that there was no match for the video, as it was not in the database. Feel free to try your own inputs for the querying, but only the ones in the test-input directory, or any frames (you can upload images) or snippets from the same videos will yield any results.
 
+Here is also an interesting graphical representation of the current vectors in the Pinecone Database! It was made using Atlas Nomic.
+
+![viewvie db](https://github.com/darrylnurse/viewvie/assets/126132293/b804287c-8b7d-4354-a243-cffe5968183e)
+
 # Setup
 
 Just a disclaimer, unfortunately, in the face of our time (and budget) constraints, we do not have support for Mac or Linux users. This is because I say so. (Unfortunately like a shortsightedly architectured house, I only have Windows.)
