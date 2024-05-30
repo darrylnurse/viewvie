@@ -9,8 +9,9 @@ import emitterSpawner from "./units/spawn-emitter.js";
 import * as dotenv from "dotenv";
 import { fileURLToPath } from 'url';
 import formatVector from "./units/format-vector.js";
-import findMovie from "./units/find-movie.js";
+//import findMovie from "./units/find-movie.js";
 import purgeDirectory from "./units/clear-directory.js";
+import queryVector from "./units/query-vector.js";
 
 dotenv.config();
 
@@ -82,15 +83,13 @@ let metadataTitle = "";
 
 adminEmitter.on('new-admin-embedding', embedding => {
   adminVectors.push(formatVector(embedding, (metadataTitle || "test")));
-  // console.log(adminVectors);
-  // console.log(adminVectors.length);
 });
 
 adminEmitter.once("admin-finished", () => {
   if (adminVectors.length > 0) {
     index.namespace("test").upsert(adminVectors)
         .then(() =>{
-          console.log("Vectors upserted successfully.")
+          console.log("Vectors upserted successfully.");
           adminVectors.length = 0;
         })
         .catch(err => console.error("Upsert failed:", err));
@@ -102,43 +101,45 @@ adminEmitter.once("admin-finished", () => {
 const userOutputDir = path.join(__dirname, 'user-output');
 const userEmitter = emitterSpawner(userOutputDir, 'user');
 
-// add all vectors to an array
-/*
-* [
-*   {values: [vector, of, embeddings]
-*   ...
-* ]
-* */
-// call find movie algorithm
-// do calculations on the Map
-// movieTitleFreq / Map size
-// show x (3) movies
-// iterate over movie and create an array of objects
-// {movieName: movie, percentChance: x%}
+//let userVectors = [];
 
-let userVectors = [];
-userEmitter.on('new-user-embedding', embedding => { //we will use query vector here
-  userVectors.push(formatVector(embedding, ""));
+const userMap = new Map();
+const threshold = 0.99;
+
+userEmitter.on('new-user-embedding', async embedding => { //we will use query vector here
+  const vector = formatVector(embedding, "");
+  const queryResult = await queryVector([...vector.values]);
+  if(queryResult && queryResult.score > threshold){
+    userMap.set(queryResult.metadata.movieTitle, (userMap.get(queryResult.metadata.movieTitle) || 0) + 1);
+  }
 });
 
-let userResults = null;
+console.log(userMap);
+
+// let userResults = null;
 let resultArray = [];
 let resultsReady = false;
-userEmitter.once('user-finished', async () => {
-  userResults = await findMovie(userVectors, 0.95);
 
-  userVectors.length = 0;
-  let total = userResults ? Array.from(userResults.values()).reduce((a, b) => a + b, 0) : 0;
+userEmitter.on('user-finished', async () => {
+  //userResults = await findMovie(userVectors, 0.95);
+  console.log(userMap);
 
-  resultArray = [];  // Clear previous results
-  userResults.forEach((value, key) => {
+  //userVectors.length = 0;
+  let total = userMap ? Array.from(userMap.values()).reduce((a, b) => a + b, 0) : 0;
+
+  resultArray = [];
+  userMap.forEach((value, key) => {
     resultArray.push({
       title: key,
       percentage: Math.floor(value / total * 100),
     });
   });
 
+  console.log(resultArray);
+
   resultsReady = Boolean(1);
+
+  userMap.clear();
 });
 
 app.use(bodyParser.urlencoded({extended: false}))
@@ -151,10 +152,8 @@ process.on('exit', () => {
 
 app.get("/user-results", (request, response) => {
   if (!resultsReady) {
-    console.log("Results are not ready.");
     return response.status(202).json({ message: "Results are still being prepared. Please try again later." });
   } else {
-    console.log("Results are ready.");
     response.json(resultArray.map(movieObject => {
       return {
         title: movieObject.title,
@@ -162,6 +161,7 @@ app.get("/user-results", (request, response) => {
       };
     }));
   }
+  resultArray.length = 0;
 });
 
 purgeDirectory(
@@ -169,5 +169,4 @@ purgeDirectory(
     "./backend/user-output",
     "./backend/uploads"
 ).then(() =>
-        app.listen(PORT, () => console.log(`Server is running on port ${PORT}.`)));
-
+    app.listen(PORT, () => console.log(`Server is running on port ${PORT}.`)));
