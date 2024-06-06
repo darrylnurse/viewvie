@@ -12,7 +12,7 @@
 
 Viewvie is able to ascertain the name of the uploaded video, by matching its frame embeddings to what is stored in its database. The metadata of the most prominent matches are returned to the user, telling them the name of the video.
 
-Unfortunately, for now we face optimization issues, and have limited our testing (and use) to short clips of around 2-5 seconds. We recommend you stay within this range as well when [trying it locally on your system](#setup). 
+Unfortunately, for now we face optimization issues, and have limited our testing (and use) to short clips of around 15 seconds. We recommend you stay within this range as well when [trying it locally on your system](#setup). 
 
 This project is also very early in development. =)
 
